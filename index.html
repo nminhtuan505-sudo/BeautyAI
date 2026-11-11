@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BeautyGlow AI - cửa hàng mỹ phẩm và trợ lý tư vấn chăm sóc da.">
+  <title>BeautyGlow AI | Mỹ phẩm & chăm sóc da</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" data-page="home"><span class="brand-mark">✿</span><span>BeautyGlow <small>AI BEAUTY STORE</small></span></a>
+    <nav class="main-nav">
+      <a href="#" data-page="home">Trang chủ</a>
+      <a href="#" data-page="shop">Sản phẩm</a>
+      <a href="#" data-page="chat">Tư vấn AI</a>
+      <a href="#" data-page="orders">Đơn hàng</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn" id="themeBtn" title="Đổi giao diện" aria-label="Đổi giao diện">☼</button>
+      <button class="icon-btn" id="accountBtn" title="Tài khoản">♙</button>
+      <button class="cart-btn" id="cartBtn">Giỏ hàng <span id="cartCount">0</span></button>
+      <button class="menu-btn" id="menuBtn" aria-label="Mở menu">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="page active" id="homePage">
+      <div class="hero">
+        <div class="hero-copy">
+          <span class="eyebrow">YOUR BEAUTY, YOUR GLOW</span>
+          <h1>Đẹp rạng rỡ,<br><em>theo cách của bạn.</em></h1>
+          <p>Khám phá mỹ phẩm phù hợp và nhận gợi ý chăm sóc da từ trợ lý BeautyGlow AI.</p>
+          <div class="hero-actions">
+            <button class="btn primary" data-page="shop">Khám phá sản phẩm</button>
+            <button class="btn ghost" data-page="chat">Trò chuyện với AI ↗</button>
+          </div>
+          <div class="hero-note"><span>✦</span> Chọn sản phẩm phù hợp với làn da của bạn</div>
+        </div>
+        <div class="hero-art">
+          <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
+          <div class="bottle bottle-large"><span>BG</span><small>GLOW SERUM</small></div>
+          <div class="bottle bottle-small"><span>✿</span><small>SKIN CARE</small></div>
+          <div class="art-sticker">glow<br>every day</div>
+        </div>
+      </div>
+      <div class="trust-strip">
+        <div><b>01</b><span>Sản phẩm chọn lọc</span></div><div><b>02</b><span>Tư vấn theo nhu cầu</span></div><div><b>03</b><span>Đặt hàng dễ dàng</span></div><div><b>04</b><span>Chăm sóc tận tâm</span></div>
+      </div>
+      <section class="section-wrap">
+        <div class="section-heading"><div><span class="eyebrow">CURATED FOR YOU</span><h2>Sản phẩm nổi bật</h2></div><button class="text-link" data-page="shop">Xem tất cả →</button></div>
+        <div class="product-grid" id="featuredProducts"></div>
+      </section>
+      <section class="ai-banner">
+        <div><span class="eyebrow">BEAUTY ASSISTANT</span><h2>Chưa biết làn da cần gì?</h2><p>Hãy chia sẻ loại da, mối quan tâm và ngân sách. BeautyGlow AI sẽ gợi ý sản phẩm phù hợp từ cửa hàng.</p><button class="btn dark" data-page="chat">Bắt đầu tư vấn →</button></div>
+        <div class="ai-sparkle">✧</div>
+      </section>
+    </section>
+
+    <section class="page" id="shopPage">
+      <div class="page-heading"><span class="eyebrow">THE BEAUTY EDIT</span><h1>Khám phá sản phẩm</h1><p>Tìm những món chăm sóc và làm đẹp dành riêng cho bạn.</p></div>
+      <div class="shop-toolbar">
+        <input id="searchInput" type="search" placeholder="Tìm tên sản phẩm, thương hiệu...">
+        <select id="categoryFilter"><option value="">Tất cả danh mục</option></select>
+        <select id="brandFilter"><option value="">Tất cả thương hiệu</option></select>
+        <select id="sortSelect"><option value="featured">Nổi bật</option><option value="asc">Giá tăng dần</option><option value="desc">Giá giảm dần</option><option value="name">Tên A–Z</option></select>
+      </div>
+      <div class="price-filter"><label>Giá tối đa: <b id="priceLabel">1.000.000₫</b></label><input id="priceFilter" type="range" min="50000" max="1000000" step="10000" value="1000000"></div>
+      <div class="result-line"><span id="resultCount"></span><button class="text-link" id="resetFilters">Xóa bộ lọc</button></div>
+      <div class="product-grid" id="allProducts"></div>
+    </section>
+
+    <section class="page" id="accountPage">
+      <div class="page-heading"><span class="eyebrow">YOUR BEAUTY PROFILE</span><h1>Tài khoản của bạn</h1></div>
+      <div class="account-layout">
+        <div class="panel" id="authPanel">
+          <div class="tabs"><button class="tab active" data-auth="login">Đăng nhập</button><button class="tab" data-auth="register">Đăng ký</button></div>
+          <form id="authForm">
+            <label id="nameLabel" class="hidden">Họ và tên<input id="authName" autocomplete="name"></label>
+            <label>Email<input id="authEmail" type="email" required placeholder="you@example.com"></label>
+            <label>Mật khẩu<input id="authPassword" type="password" required minlength="4" placeholder="Ít nhất 4 ký tự"></label>
+            <button class="btn primary full" id="authSubmit">Đăng nhập</button>
+            <p class="form-hint" id="authHint">Chưa có tài khoản? Chọn Đăng ký để tạo tài khoản demo.</p>
+          </form>
+        </div>
+        <div class="panel hidden" id="profilePanel">
+          <div class="profile-avatar">✿</div><h2 id="profileName">Xin chào!</h2><p id="profileEmail"></p>
+          <label>Họ và tên<input id="profileNameInput"></label><label>Số điện thoại<input id="profilePhone" placeholder="09xx xxx xxx"></label><label>Địa chỉ nhận hàng<input id="profileAddress" placeholder="Địa chỉ của bạn"></label>
+          <button class="btn primary full" id="saveProfile">Lưu thông tin</button><button class="btn ghost full" id="logoutBtn">Đăng xuất</button>
+        </div>
+        <div class="account-aside"><span class="eyebrow">BEAUTY NOTES</span><h2>Một chút quan tâm mỗi ngày tạo nên khác biệt.</h2><p>Lưu thông tin giao hàng và xem lại các đơn hàng của bạn tại đây.</p></div>
+      </div>
+    </section>
+
+    <section class="page" id="cartPage">
+      <div class="page-heading"><span class="eyebrow">YOUR SELECTION</span><h1>Giỏ hàng</h1><p>Kiểm tra sản phẩm trước khi đặt hàng.</p></div>
+      <div class="cart-layout"><div id="cartItems" class="panel"></div><aside class="panel summary" id="cartSummary"></aside></div>
+    </section>
+
+    <section class="page" id="checkoutPage">
+      <div class="page-heading"><span class="eyebrow">ALMOST YOURS</span><h1>Hoàn tất đơn hàng</h1></div>
+      <div class="checkout-layout">
+        <form id="checkoutForm" class="panel">
+          <h2>Thông tin nhận hàng</h2>
+          <label>Họ và tên<input id="checkoutName" required></label><label>Email<input id="checkoutEmail" type="email" required></label><label>Số điện thoại<input id="checkoutPhone" required></label><label>Địa chỉ nhận hàng<textarea id="checkoutAddress" required rows="3"></textarea></label>
+          <label>Phương thức thanh toán<select id="paymentMethod"><option>Thanh toán khi nhận hàng (COD)</option><option>Chuyển khoản ngân hàng (demo)</option></select></label>
+          <button class="btn primary full">Xác nhận đặt hàng</button>
+        </form>
+        <aside class="panel summary" id="checkoutSummary"></aside>
+      </div>
+    </section>
+
+    <section class="page" id="ordersPage">
+      <div class="page-heading"><span class="eyebrow">ORDER HISTORY</span><h1>Đơn hàng của tôi</h1><p>Theo dõi các đơn hàng đã đặt.</p></div>
+      <div id="ordersList" class="panel"></div>
+    </section>
+
+    <section class="page" id="chatPage">
+      <div class="page-heading"><span class="eyebrow">BEAUTY CONCIERGE</span><h1>BeautyGlow <em>AI</em></h1><p>Trợ lý tư vấn mỹ phẩm theo loại da, nhu cầu và ngân sách.</p></div>
+      <div class="chat-layout">
+        <aside class="panel chat-tips"><div class="bot-avatar">✧</div><h2>Xin chào, mình là Glow!</h2><p>Mình có thể giúp bạn tìm sản phẩm dựa trên nhu cầu chăm sóc da.</p><b>Gợi ý câu hỏi</b><button class="prompt-chip">Da dầu nên dùng gì?</button><button class="prompt-chip">Mình muốn dưỡng ẩm dưới 300k</button><button class="prompt-chip">Gợi ý routine cho da nhạy cảm</button><small>Thông tin chỉ mang tính tham khảo, không thay thế tư vấn y khoa.</small></aside>
+        <div class="panel chat-panel"><div class="chat-head"><span class="online-dot"></span> Glow Assistant <small>Đang sẵn sàng tư vấn</small></div><div id="chatMessages" class="chat-messages"><div class="message bot">Chào bạn! ✨ Bạn có thể cho mình biết loại da hoặc điều bạn đang quan tâm không?</div></div><form id="chatForm" class="chat-input"><input id="chatInput" placeholder="Nhập câu hỏi của bạn..." autocomplete="off"><button class="btn primary">Gửi ↑</button></form></div>
+      </div>
+    </section>
+
+    <section class="page" id="adminPage">
+      <div class="page-heading"><span class="eyebrow">STORE MANAGEMENT</span><h1>Quản trị cửa hàng</h1><p>Khu vực demo để quản lý sản phẩm và cập nhật trạng thái đơn hàng.</p></div>
+      <div class="admin-warning">Đây là trang quản trị mô phỏng phía trình duyệt. Không dùng để vận hành cửa hàng thật.</div>
+      <div class="admin-layout"><div class="panel"><h2 id="productFormTitle">Thêm mỹ phẩm</h2><form id="productForm"><input type="hidden" id="editProductId"><label>Tên sản phẩm<input id="newProductName" required></label><label>Thương hiệu<input id="newProductBrand" required></label><label>Danh mục<input id="newProductCategory" required placeholder="Chăm sóc da"></label><label>Giá bán (VNĐ)<input id="newProductPrice" type="number" min="1000" required></label><label>Mô tả<input id="newProductDesc" required></label><button class="btn primary full">Lưu sản phẩm</button></form></div><div class="panel admin-products"><h2>Danh sách sản phẩm</h2><div id="adminProductList"></div></div></div>
+      <div class="panel admin-orders"><h2>Quản lý đơn hàng</h2><div id="adminOrderList"></div></div>
+    </section>
+  </main>
+
+  <footer><div class="footer-brand">✿ BeautyGlow AI</div><p>Chăm sóc vẻ đẹp bắt đầu từ sự thấu hiểu làn da.</p><div class="footer-links"><button data-page="shop">Sản phẩm</button><button data-page="chat">Tư vấn AI</button><button data-page="admin">Quản trị demo</button></div><small>© 2026 BeautyGlow AI · Dự án học tập</small></footer>
+
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
